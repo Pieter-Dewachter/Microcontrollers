@@ -2,7 +2,8 @@
 #include "button.h"
 
 Button::Button() {
-  LPC_GPIO0->FIODIR |= (1 << 16);
+  LPC_PINCON->PINMODE1 |= 3; // Enabling the pull-down instead of the pull-up resistor
+  LPC_GPIO0->FIODIR &= ~(1 << 16); // Configuring the pin as output
 	LPC_GPIO0->FIOMASK &= ~(1 << 16);
 }
 
